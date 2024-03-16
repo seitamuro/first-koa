@@ -7,6 +7,7 @@ import session from "koa-session";
 import route from "koa-route";
 import serve from "koa-static";
 import send from "koa-send";
+import gracefulShutdown from "http-graceful-shutdown";
 import { rootResolve } from "./root_resolve";
 
 const PORT = Number(process.env.PORT ?? 8080);
@@ -30,6 +31,12 @@ const init = async () => {
 
   httpServer.listen(PORT, () => {
     console.log(`🚀 Server ready at: http://localhost:${PORT}`);
+  });
+
+  gracefulShutdown(httpServer, {
+    async onShutdown(signal) {
+      console.log(`Received signal to terminate: ${signal}`);
+    },
   });
 };
 
