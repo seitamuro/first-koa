@@ -29,6 +29,8 @@ const init = async () => {
     })
   );
 
+  app.use(async (ctx) => await send(ctx, rootResolve("/dist/index.html")));
+
   httpServer.listen(PORT, () => {
     console.log(`🚀 Server ready at: http://localhost:${PORT}`);
   });
