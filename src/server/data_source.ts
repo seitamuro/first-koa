@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
-import { DATABASE_PATH } from "./database_paths";
+import { DATABASE_PATH } from "./utils/database_paths";
 import { Book } from "../model/book";
 
 export const dataSource = new DataSource({

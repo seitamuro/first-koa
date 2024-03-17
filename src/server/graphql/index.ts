@@ -4,7 +4,7 @@ import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 
 import { Context } from "../context";
-import { rootResolve } from "../root_resolve";
+import { rootResolve } from "../utils/root_resolve";
 import { bookResolver } from "./book_resolver";
 import { queryResolver } from "./query_resolver";
 import { mutationResolver } from "./mutation_resolver";

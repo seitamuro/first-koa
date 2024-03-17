@@ -9,7 +9,7 @@ import route from "koa-route";
 import serve from "koa-static";
 import send from "koa-send";
 import gracefulShutdown from "http-graceful-shutdown";
-import { rootResolve } from "./root_resolve";
+import { rootResolve } from "./utils/root_resolve";
 import { initializeApolloServer } from "./graphql";
 import { Context } from "./context";
 import { dataSource } from "./data_source";
