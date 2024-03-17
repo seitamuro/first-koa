@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm-run-all -p start:server",
+    "start": "npm-run-all -p start:server start:client",
+    "start:client": "cross-env NODE_ENV=production vite build --watch",
     "start:server": "nodemon --watch src --ext 'ts,tsx' --exec 'ts-node src/server'",
+    "build": "npm-run-all -s build:tsc build:vite",
+    "build:tsc": "tsc",
+    "build:vite": "cross-env NODE_ENV=production vite build",
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "keywords": [],
@@ -14,6 +18,8 @@
     "@apollo/client": "^3.9.7",
     "@apollo/server": "^4.10.1",
     "@as-integrations/koa": "^1.1.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "cross-env": "^7.0.3",
     "dataloader": "^2.2.2",
     "graphql": "^16.8.1",
     "http-graceful-shutdown": "^3.1.13",
@@ -23,12 +29,18 @@
     "koa-send": "^5.0.1",
     "koa-session": "^6.4.0",
     "koa-static": "^5.0.0",
+    "next": "^14.1.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "reflect-metadata": "^0.2.1",
     "sqlite3": "^5.1.7",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "vite-plugin-ejs": "^1.7.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
     "@types/graphql": "^14.5.0",
     "@types/http-graceful-shutdown": "^2.3.0",
     "@types/koa": "^2.15.0",
@@ -39,6 +51,8 @@
     "@types/koa-session": "^6.4.5",
     "@types/koa-static": "^4.0.4",
     "@types/node": "^20.11.28",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
     "@types/reflect-metadata": "^0.1.0",
     "client": "link:@types/@apollo/client",
     "koa": "link:@types/@as-integrations/koa",
@@ -47,7 +61,6 @@
     "server": "link:@types/@apollo/server",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
-    "@graphql-codegen/typescript": "4.0.6",
-    "@graphql-codegen/typescript-resolvers": "4.0.6"
+    "vite": "^5.1.6"
   }
 }
