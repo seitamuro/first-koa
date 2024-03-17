@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "npm-run-all -p start:server",
-    "start:server": "nodemon --watch src --ext 'ts,tsx' --exec 'ts-node src'"
+    "start:server": "nodemon --watch src --ext 'ts,tsx' --exec 'ts-node src/server'"
   },
   "keywords": [],
   "author": "",

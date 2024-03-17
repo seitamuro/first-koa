@@ -2,7 +2,7 @@ import DataLoader from "dataloader";
 
 import type { GraphQLModelResolver } from "./model_resolver";
 import { dataSource } from "../data_source";
-import { Book } from "../model/book";
+import { Book } from "../../model/book";
 
 export const bookResolver: GraphQLModelResolver<Book> = {
   id: async (parent: Book) => {

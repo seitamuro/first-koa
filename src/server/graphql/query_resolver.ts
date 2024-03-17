@@ -1,6 +1,6 @@
 import type { GraphQLFieldResolver } from "graphql";
 import type { Context } from "@apollo/client";
-import { Book } from "../model/book";
+import { Book } from "../../model/book";
 import { dataSource } from "../data_source";
 
 type QueryResolver = {

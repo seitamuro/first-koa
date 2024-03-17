@@ -1,5 +1,5 @@
 import { dataSource } from "../data_source";
-import { Book } from "../model/book";
+import { Book } from "../../model/book";
 
 type MutationResolver = {
   createBook: (
