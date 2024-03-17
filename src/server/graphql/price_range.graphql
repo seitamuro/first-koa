@@ -1,0 +1,5 @@
+input PriceSearchInput {
+  _gte: Int
+  _lte: Int
+  _eq: Int
+}

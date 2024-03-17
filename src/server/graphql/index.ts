@@ -13,6 +13,7 @@ export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
   const typeDefs = await Promise.all(
     [
       rootResolve("./src/model/book.graphql"),
+      rootResolve("./src/server/graphql/price_range.graphql"),
       rootResolve("./src/server/graphql/query.graphql"),
       rootResolve("./src/server/graphql/mutation.graphql"),
     ].map((filepath) => fs.readFile(filepath, { encoding: "utf-8" }))

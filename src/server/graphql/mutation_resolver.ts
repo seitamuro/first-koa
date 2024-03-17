@@ -11,6 +11,11 @@ export const mutationResolver: MutationResolvers = {
       if (exists) {
         return exists;
       }
+
+      const book = new Book();
+      book.title = _args.title;
+      book.author = _args.author;
+      book.price = _args.price;
       return book;
     });
     await dataSource.manager.save(book);
