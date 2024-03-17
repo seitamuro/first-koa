@@ -1,14 +1,8 @@
-import type { GraphQLFieldResolver } from "graphql";
-import type { Context } from "@apollo/client";
 import { Book } from "../../model/book";
 import { dataSource } from "../data_source";
+import { QueryResolvers } from "../../generated/graphql";
 
-type QueryResolver = {
-  book: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<Book>>;
-  books: () => Promise<Book[]>;
-};
-
-export const queryResolver: QueryResolver = {
+export const queryResolver: QueryResolvers = {
   book: async (_parent, _args, _context, _info) => {
     return dataSource.manager.findOneOrFail(Book, { where: { id: _args.id } });
   },

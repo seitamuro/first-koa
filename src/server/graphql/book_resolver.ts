@@ -1,10 +1,8 @@
-import DataLoader from "dataloader";
-
-import type { GraphQLModelResolver } from "./model_resolver";
 import { dataSource } from "../data_source";
 import { Book } from "../../model/book";
+import type { BookResolvers } from "../../generated/graphql";
 
-export const bookResolver: GraphQLModelResolver<Book> = {
+export const bookResolver: BookResolvers = {
   id: async (parent: Book) => {
     const book = await dataSource.manager.findOneOrFail(Book, {
       where: {
