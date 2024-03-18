@@ -1,6 +1,6 @@
 import { dataSource } from "../data_source";
-import { Book } from "../../model/book";
-import type { BookResolvers } from "../../generated/graphql";
+import { Book } from "../../schema/book";
+import type { BookResolvers } from "../generated/graphql";
 
 export const bookResolver: BookResolvers = {
   id: async (parent: Book) => {

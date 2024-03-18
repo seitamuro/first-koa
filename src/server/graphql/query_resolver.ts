@@ -1,6 +1,6 @@
-import { Book } from "../../model/book";
+import { Book } from "../../schema/book";
 import { dataSource } from "../data_source";
-import { QueryResolvers } from "../../generated/graphql";
+import { QueryResolvers } from "../generated/graphql";
 
 export const queryResolver: QueryResolvers = {
   book: async (_parent, _args, _context, _info) => {

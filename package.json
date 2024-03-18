@@ -9,7 +9,9 @@
     "build": "npm-run-all -s build:tsc build:vite",
     "build:tsc": "tsc",
     "build:vite": "cross-env NODE_ENV=production vite build",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "npm-run-all -p codegen:client codegen:server",
+    "codegen:client": "graphql-codegen --config codegen.client.ts",
+    "codegen:server": "graphql-codegen --config codegen.server.ts"
   },
   "keywords": [],
   "author": "",
@@ -39,7 +41,10 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.4",
     "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-operations": "^4.2.0",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.0",
     "@graphql-codegen/typescript-resolvers": "4.0.6",
     "@types/graphql": "^14.5.0",
     "@types/http-graceful-shutdown": "^2.3.0",

@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 
 import { DATABASE_PATH } from "./utils/database_paths";
-import { Book } from "../model/book";
+import { Book } from "../schema/book";
 
 export const dataSource = new DataSource({
   database: DATABASE_PATH,

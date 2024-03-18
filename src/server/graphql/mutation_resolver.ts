@@ -1,6 +1,6 @@
 import { dataSource } from "../data_source";
-import { Book } from "../../model/book";
-import { MutationResolvers } from "../../generated/graphql";
+import { Book } from "../../schema/book";
+import { MutationResolvers } from "../generated/graphql";
 
 export const mutationResolver: MutationResolvers = {
   createBook: async (_parent, _args, _context, _info) => {
