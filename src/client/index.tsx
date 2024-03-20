@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <StrictMode>
         <Routes />
-      </StrictMode>,
+      </StrictMode>
     </BrowserRouter >
   </ApolloProvider >
 )
