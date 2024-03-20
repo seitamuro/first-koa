@@ -4,7 +4,7 @@ import { GetBookDocument, GetBookQuery, GetBooksDocument, GetBooksQuery } from "
 import { useState } from "react";
 import { IntegerType } from "typeorm";
 
-export const Select = () => {
+export const SuspenseSelect = () => {
   const { data } = useSuspenseQuery<GetBooksQuery>(GetBooksDocument);
   const [selected, setSelected] = useState(data.books[0].id)
   return <>
