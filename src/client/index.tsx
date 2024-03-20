@@ -1,4 +1,4 @@
-import { StrictMode, Suspense } from "react"
+import { StrictMode } from "react"
 import * as ReactDOM from "react-dom/client"
 
 import { App } from "./components/application/App"
@@ -15,13 +15,11 @@ const apolloClient = new ApolloClient({
 })
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <Suspense fallback={<p>Loading...</p>}>
-    <ApolloProvider client={apolloClient}>
-      <BrowserRouter>
-        <StrictMode>
-          <Routes />
-        </StrictMode>,
-      </BrowserRouter >
-    </ApolloProvider >
-  </Suspense>
+  <ApolloProvider client={apolloClient}>
+    <BrowserRouter>
+      <StrictMode>
+        <Routes />
+      </StrictMode>,
+    </BrowserRouter >
+  </ApolloProvider >
 )

@@ -33,7 +33,6 @@ export const bookResolver: BookResolvers = {
         id: parent.id,
       },
     });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     return book.price;
   },
 };
