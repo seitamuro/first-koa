@@ -7,6 +7,7 @@ const Select = lazy(() => import("../../../pages/Select"))
 const RenderingPartialData = lazy(() => import("../../../pages/RenderingPartialData"))
 const NotAvoidingRequestWaterfalls = lazy(() => import("../../../pages/NotAvoidingRequestWaterfalls"))
 const AvoidingRequestWaterfalls = lazy(() => import("../../../pages/AvoidingRequestWaterfalls"))
+const LoadableQuery = lazy(() => import("../../../pages/LoadableQuery"))
 
 export const Routes: FC = () => {
   return (
@@ -17,6 +18,7 @@ export const Routes: FC = () => {
       <Router.Route element={<Suspense fallback={<p>Loading...</p>}><RenderingPartialData /></Suspense>} path="/rendering-partial-data" />
       <Router.Route element={<Suspense fallback={<div>Loading...</div>}><NotAvoidingRequestWaterfalls /></Suspense>} path="/not-avoiding-request-waterfalls" />
       <Router.Route element={<Suspense fallback={<div>Loading...</div>}><AvoidingRequestWaterfalls /></Suspense>} path="/avoiding-request-waterfalls" />
+      <Router.Route element={<Suspense fallback={<div>Loading...</div>}><LoadableQuery /></Suspense>} path="/loadable-query" />
     </Router.Routes>
   )
 }
