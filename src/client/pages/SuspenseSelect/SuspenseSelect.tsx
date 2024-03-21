@@ -1,5 +1,5 @@
-import { useQuery, useSuspenseQuery } from "@apollo/client"
-import { Suspense, startTransition, useTransition } from "react";
+import { useSuspenseQuery } from "@apollo/client"
+import { Suspense, useTransition } from "react";
 import { GetBookDocument, GetBookQuery, GetBooksDocument, GetBooksQuery } from "../../generated/graphql"
 import { useState } from "react";
 import { IntegerType } from "typeorm";
