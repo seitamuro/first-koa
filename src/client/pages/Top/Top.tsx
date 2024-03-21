@@ -1,12 +1,12 @@
-import { useQuery } from "@apollo/client";
-import { Book, GetBooksDocument, GetBooksQuery } from "../../generated/graphql";
+import { Link } from "react-router-dom"
 
 export const Top = () => {
-  const { loading, error, data } = useQuery<GetBooksQuery>(GetBooksDocument);
   return (
     <div>
       <h1>Top</h1>
-      {loading ? <p>Loading...</p> : <ul>{data?.books.map((book) => { return <li>¥{book.price} {book.title}({book.author})</li> })}</ul>}
+      <ul>
+        <li><Link to={"/preload-query"}>/preload-query</Link></li>
+      </ul>
     </div>
   )
 }
