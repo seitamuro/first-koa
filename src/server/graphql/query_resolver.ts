@@ -1,4 +1,5 @@
 import { Book } from "../../schema/book";
+import { Photo } from "../../schema/photo";
 import { Shop } from "../../schema/shop";
 import { dataSource } from "../data_source";
 import { QueryResolvers } from "../generated/graphql";
@@ -32,5 +33,11 @@ export const queryResolver: QueryResolvers = {
   },
   shops: () => {
     return dataSource.manager.find(Shop);
+  },
+  photos: () => {
+    return dataSource.manager
+      .createQueryBuilder(Photo, "photo")
+      .leftJoinAndSelect("photo.metadata", "metadata")
+      .getMany();
   },
 };

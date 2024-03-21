@@ -1,4 +1,14 @@
+input PhotoMetadataInput {
+  height: Int!
+  width: Int!
+}
+
 type Mutation {
   createBook(title: String!, author: String!, price: Int!): Book!
   createShop(name: String!): Shop!
+  createPhoto(
+    name: String
+    description: String
+    metadata: PhotoMetadataInput!
+  ): Photo!
 }

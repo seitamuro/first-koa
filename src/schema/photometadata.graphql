@@ -1,0 +1,6 @@
+type PhotoMetadata {
+  id: Int!
+  height: Int!
+  width: Int!
+  createdAt: DateTime!
+}

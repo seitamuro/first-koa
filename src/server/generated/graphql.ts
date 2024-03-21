@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -14,6 +14,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
 };
 
 export type Book = {
@@ -27,6 +28,7 @@ export type Book = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBook: Book;
+  createPhoto: Photo;
   createShop: Shop;
 };
 
@@ -38,8 +40,36 @@ export type MutationCreateBookArgs = {
 };
 
 
+export type MutationCreatePhotoArgs = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  metadata: PhotoMetadataInput;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type MutationCreateShopArgs = {
   name: Scalars['String']['input'];
+};
+
+export type Photo = {
+  __typename?: 'Photo';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  metadata: PhotoMetadata;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type PhotoMetadata = {
+  __typename?: 'PhotoMetadata';
+  createdAt: Scalars['DateTime']['output'];
+  height: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  width: Scalars['Int']['output'];
+};
+
+export type PhotoMetadataInput = {
+  height: Scalars['Int']['input'];
+  width: Scalars['Int']['input'];
 };
 
 export type PriceSearchInput = {
@@ -55,6 +85,7 @@ export type Query = {
   findBookByAuthor: Array<Book>;
   findBookByPrice: Array<Book>;
   findBookByTitle: Array<Book>;
+  photos: Array<Photo>;
   shops: Array<Shop>;
 };
 
@@ -157,8 +188,12 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  Photo: ResolverTypeWrapper<Photo>;
+  PhotoMetadata: ResolverTypeWrapper<PhotoMetadata>;
+  PhotoMetadataInput: PhotoMetadataInput;
   PriceSearchInput: PriceSearchInput;
   Query: ResolverTypeWrapper<{}>;
   Shop: ResolverTypeWrapper<Shop>;
@@ -169,8 +204,12 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Book: Book;
   Boolean: Scalars['Boolean']['output'];
+  DateTime: Scalars['DateTime']['output'];
   Int: Scalars['Int']['output'];
   Mutation: {};
+  Photo: Photo;
+  PhotoMetadata: PhotoMetadata;
+  PhotoMetadataInput: PhotoMetadataInput;
   PriceSearchInput: PriceSearchInput;
   Query: {};
   Shop: Shop;
@@ -185,9 +224,30 @@ export type BookResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
+}
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createBook?: Resolver<ResolversTypes['Book'], ParentType, ContextType, RequireFields<MutationCreateBookArgs, 'author' | 'price' | 'title'>>;
+  createPhoto?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<MutationCreatePhotoArgs, 'metadata'>>;
   createShop?: Resolver<ResolversTypes['Shop'], ParentType, ContextType, RequireFields<MutationCreateShopArgs, 'name'>>;
+};
+
+export type PhotoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Photo'] = ResolversParentTypes['Photo']> = {
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  metadata?: Resolver<ResolversTypes['PhotoMetadata'], ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PhotoMetadataResolvers<ContextType = any, ParentType extends ResolversParentTypes['PhotoMetadata'] = ResolversParentTypes['PhotoMetadata']> = {
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  height?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  width?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -196,6 +256,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   findBookByAuthor?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByAuthorArgs, 'author'>>;
   findBookByPrice?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByPriceArgs, 'where'>>;
   findBookByTitle?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByTitleArgs, 'title'>>;
+  photos?: Resolver<Array<ResolversTypes['Photo']>, ParentType, ContextType>;
   shops?: Resolver<Array<ResolversTypes['Shop']>, ParentType, ContextType>;
 };
 
@@ -207,7 +268,10 @@ export type ShopResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type Resolvers<ContextType = any> = {
   Book?: BookResolvers<ContextType>;
+  DateTime?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
+  Photo?: PhotoResolvers<ContextType>;
+  PhotoMetadata?: PhotoMetadataResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Shop?: ShopResolvers<ContextType>;
 };

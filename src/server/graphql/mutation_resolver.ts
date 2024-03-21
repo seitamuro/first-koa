@@ -1,4 +1,6 @@
 import { Book } from "../../schema/book";
+import { Photo } from "../../schema/photo";
+import { PhotoMetadata } from "../../schema/photometadata";
 import { Shop } from "../../schema/shop";
 import { dataSource } from "../data_source";
 import { MutationResolvers } from "../generated/graphql";
@@ -36,5 +38,27 @@ export const mutationResolver: MutationResolvers = {
     });
     await dataSource.manager.save(shop);
     return shop;
+  },
+  createPhoto: async (_parent, _args, _context, _info) => {
+    const metadata = new PhotoMetadata();
+    metadata.height = _args.metadata.height;
+    metadata.width = _args.metadata.width;
+    metadata.createdAt = new Date();
+
+    await dataSource.manager.save(metadata);
+
+    const photo = new Photo();
+    if (_args.name) {
+      photo.name = _args.name;
+    }
+
+    if (_args.description) {
+      photo.description = _args.description;
+    }
+
+    photo.metadata = metadata;
+    await dataSource.manager.save(photo);
+
+    return photo;
   },
 };

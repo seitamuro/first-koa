@@ -6,4 +6,6 @@ type Query {
   books: [Book!]!
 
   shops: [Shop!]!
+
+  photos: [Photo!]!
 }

@@ -26,6 +26,9 @@ dependencies:
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
+  graphql-iso-date:
+    specifier: ^3.6.1
+    version: 3.6.1(graphql@16.8.1)
   http-graceful-shutdown:
     specifier: ^3.1.13
     version: 3.1.13
@@ -4034,6 +4037,14 @@ packages:
       - typescript
       - utf-8-validate
     dev: true
+
+  /graphql-iso-date@3.6.1(graphql@16.8.1):
+    resolution: {integrity: sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==}
+    peerDependencies:
+      graphql: ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0-b || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0
+    dependencies:
+      graphql: 16.8.1
+    dev: false
 
   /graphql-request@6.1.0(graphql@16.8.1):
     resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}

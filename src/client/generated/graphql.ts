@@ -14,6 +14,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
 };
 
 export type Book = {
@@ -27,6 +28,7 @@ export type Book = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBook: Book;
+  createPhoto: Photo;
   createShop: Shop;
 };
 
@@ -38,8 +40,36 @@ export type MutationCreateBookArgs = {
 };
 
 
+export type MutationCreatePhotoArgs = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  metadata: PhotoMetadataInput;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type MutationCreateShopArgs = {
   name: Scalars['String']['input'];
+};
+
+export type Photo = {
+  __typename?: 'Photo';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  metadata: PhotoMetadata;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type PhotoMetadata = {
+  __typename?: 'PhotoMetadata';
+  createdAt: Scalars['DateTime']['output'];
+  height: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  width: Scalars['Int']['output'];
+};
+
+export type PhotoMetadataInput = {
+  height: Scalars['Int']['input'];
+  width: Scalars['Int']['input'];
 };
 
 export type PriceSearchInput = {
@@ -55,6 +85,7 @@ export type Query = {
   findBookByAuthor: Array<Book>;
   findBookByPrice: Array<Book>;
   findBookByTitle: Array<Book>;
+  photos: Array<Photo>;
   shops: Array<Shop>;
 };
 
