@@ -27,6 +27,7 @@ export type Book = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBook: Book;
+  createShop: Shop;
 };
 
 
@@ -34,6 +35,11 @@ export type MutationCreateBookArgs = {
   author: Scalars['String']['input'];
   price: Scalars['Int']['input'];
   title: Scalars['String']['input'];
+};
+
+
+export type MutationCreateShopArgs = {
+  name: Scalars['String']['input'];
 };
 
 export type PriceSearchInput = {
@@ -49,6 +55,7 @@ export type Query = {
   findBookByAuthor: Array<Book>;
   findBookByPrice: Array<Book>;
   findBookByTitle: Array<Book>;
+  shops: Array<Shop>;
 };
 
 
@@ -69,6 +76,12 @@ export type QueryFindBookByPriceArgs = {
 
 export type QueryFindBookByTitleArgs = {
   title: Scalars['String']['input'];
+};
+
+export type Shop = {
+  __typename?: 'Shop';
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
 };
 
 
@@ -148,6 +161,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   PriceSearchInput: PriceSearchInput;
   Query: ResolverTypeWrapper<{}>;
+  Shop: ResolverTypeWrapper<Shop>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
 };
 
@@ -159,6 +173,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   PriceSearchInput: PriceSearchInput;
   Query: {};
+  Shop: Shop;
   String: Scalars['String']['output'];
 };
 
@@ -172,6 +187,7 @@ export type BookResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createBook?: Resolver<ResolversTypes['Book'], ParentType, ContextType, RequireFields<MutationCreateBookArgs, 'author' | 'price' | 'title'>>;
+  createShop?: Resolver<ResolversTypes['Shop'], ParentType, ContextType, RequireFields<MutationCreateShopArgs, 'name'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -180,11 +196,19 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   findBookByAuthor?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByAuthorArgs, 'author'>>;
   findBookByPrice?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByPriceArgs, 'where'>>;
   findBookByTitle?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<QueryFindBookByTitleArgs, 'title'>>;
+  shops?: Resolver<Array<ResolversTypes['Shop']>, ParentType, ContextType>;
+};
+
+export type ShopResolvers<ContextType = any, ParentType extends ResolversParentTypes['Shop'] = ResolversParentTypes['Shop']> = {
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
   Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Shop?: ShopResolvers<ContextType>;
 };
 

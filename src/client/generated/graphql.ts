@@ -27,6 +27,7 @@ export type Book = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBook: Book;
+  createShop: Shop;
 };
 
 
@@ -34,6 +35,11 @@ export type MutationCreateBookArgs = {
   author: Scalars['String']['input'];
   price: Scalars['Int']['input'];
   title: Scalars['String']['input'];
+};
+
+
+export type MutationCreateShopArgs = {
+  name: Scalars['String']['input'];
 };
 
 export type PriceSearchInput = {
@@ -49,6 +55,7 @@ export type Query = {
   findBookByAuthor: Array<Book>;
   findBookByPrice: Array<Book>;
   findBookByTitle: Array<Book>;
+  shops: Array<Shop>;
 };
 
 
@@ -69,6 +76,12 @@ export type QueryFindBookByPriceArgs = {
 
 export type QueryFindBookByTitleArgs = {
   title: Scalars['String']['input'];
+};
+
+export type Shop = {
+  __typename?: 'Shop';
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type GetBookQueryVariables = Exact<{

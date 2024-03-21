@@ -1,0 +1,4 @@
+type Shop {
+  id: Int!
+  name: String!
+}

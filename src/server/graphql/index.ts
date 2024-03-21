@@ -6,13 +6,15 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
 import { Context } from "../context";
 import { rootResolve } from "../utils/root_resolve";
 import { bookResolver } from "./book_resolver";
-import { queryResolver } from "./query_resolver";
 import { mutationResolver } from "./mutation_resolver";
+import { queryResolver } from "./query_resolver";
+import { shopResolver } from "./shop_resolver";
 
 export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
   const typeDefs = await Promise.all(
     [
       rootResolve("./src/schema/book.graphql"),
+      rootResolve("./src/schema/shop.graphql"),
       rootResolve("./src/schema/price_range.graphql"),
       rootResolve("./src/schema/query.graphql"),
       rootResolve("./src/schema/mutation.graphql"),
@@ -25,6 +27,7 @@ export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
     ],
     resolvers: {
       Book: bookResolver,
+      Shop: shopResolver,
       Query: queryResolver,
       Mutation: mutationResolver,
     },

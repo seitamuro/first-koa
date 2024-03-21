@@ -1,4 +1,5 @@
 import { Book } from "../../schema/book";
+import { Shop } from "../../schema/shop";
 import { dataSource } from "../data_source";
 import { QueryResolvers } from "../generated/graphql";
 
@@ -28,5 +29,8 @@ export const queryResolver: QueryResolvers = {
   },
   books: () => {
     return dataSource.manager.find(Book);
+  },
+  shops: () => {
+    return dataSource.manager.find(Shop);
   },
 };

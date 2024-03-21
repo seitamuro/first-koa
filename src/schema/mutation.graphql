@@ -1,3 +1,4 @@
 type Mutation {
   createBook(title: String!, author: String!, price: Int!): Book!
+  createShop(name: String!): Shop!
 }

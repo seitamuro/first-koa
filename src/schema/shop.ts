@@ -1,16 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Book {
+export class Shop {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  title!: string;
-
-  @Column()
-  author!: string;
-
-  @Column()
-  price!: number;
+  name!: string;
 }
