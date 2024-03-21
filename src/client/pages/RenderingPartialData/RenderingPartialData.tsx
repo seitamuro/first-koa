@@ -8,6 +8,7 @@ export const RenderingPartialData = () => {
   const [selected, setSelected] = useState(data.books[0].id)
   const client = useApolloClient()
 
+  // キャッシュの作成
   client.writeQuery({
     query: GetBookDocument,
     variables: { id: 2 },
