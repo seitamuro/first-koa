@@ -1,10 +1,9 @@
 import { StrictMode } from "react"
 import * as ReactDOM from "react-dom/client"
 
-import { App } from "./components/application/App"
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client"
 import { BrowserRouter } from "react-router-dom"
-import { Routes } from "./components/application/Routes/Routes"
+import Routes from "./components/application/Routes"
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
